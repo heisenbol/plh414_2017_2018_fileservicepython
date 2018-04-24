@@ -1,28 +1,3 @@
-# plh414_2017_2018_fileservicepython
-plh414 2017/2018 File Service Sample Python
-
-
-
-Προσθέτουμε στο αρχείο /etc/apache2/sites-available/000-default.conf πριν το κλείσιμο του </Virtualhost> το παρακάτω και εκτελούμε μετά
-service apache2 restart
-
-```
-WSGIDaemonProcess fileservicepython user=www-data group=www-data processes=1 threads=5
-WSGIScriptAlias /fileservicepython /var/www/fileservicepython/app.wsgi
-<Directory /var/www/fileservicepython>
-    WSGIProcessGroup fileservicepython
-    WSGIApplicationGroup %{GLOBAL}
-    Require all granted
-</Directory>
-```
-
-It is important to use only 1 process in the WSGIDaemonProcess directive, as each process this process is used to create the ephemeral node for zookeeper for this fileservice.
-
-To use more processes to handle more concurrent requests (and use multiple CPUs), the processes much somehow make sure that only one ephemeral node is created.
-
-
-Possible deploy script
-```
 #!/bin/bash
 if [ "$#" -ne 9 ]; then
     echo "Illegal number of parameters"
@@ -54,4 +29,3 @@ cd $DIR
 # ./deploy.sh  PFS1 snf-814985.vm.okeanos.grnet.gr username password snf-814985.vm.okeanos.grnet.gr 80 http 7vjTsO0IhSZsNA6ze37Dk/xXw2nphFM9ZAMUkwXgaAA= fileservicepython
 # http://snf-814985.vm.okeanos.grnet.gr/fileservicepython/file/aaa.png
 # http://snf-816668.vm.okeanos.grnet.gr/fileservicepython/file/aaa.png
-```
