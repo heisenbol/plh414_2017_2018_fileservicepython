@@ -45,22 +45,7 @@ class Zooconf:
 		digest_auth = "%s:%s" % (config["ZOOKEEPER_USER"], config["ZOOKEEPER_PASSWORD"])
 		self.__zkcon.add_auth("digest", digest_auth)
 		
-		#ZooKeeper zk = new ZooKeeper(config.getProperty("ZOOKEEPER_HOST"), 3000, new Watcher() {
-		#	@Override
-		#	public void process(WatchedEvent we) {
-		#		if (we.getState() == KeeperState.SyncConnected) {
-		#			connectedSignal.countDown();
-		#		}
-		#	}
-		#});
-		#connectedSignal.await();
-		#
-		#zk.addAuthInfo("digest", new String(config.getProperty("ZOOKEEPER_USER")+":"+config.getProperty("ZOOKEEPER_PASSWORD")).getBytes()); 
-		#
-		#System.err.println("finished zooConnect");
-		#
-		#return zk;
-	#}
+
 	def __publishService(self):
 		from kazoo.security import make_digest_acl
 		config = self.getServiceConfig();
