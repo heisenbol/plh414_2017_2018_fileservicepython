@@ -34,11 +34,11 @@ bottle.debug(True)
 
 @route('/status')
 def status():
-	sys.stderr.write("Python File Service status called "+ str(zk.getTest()))
+	sys.stderr.write("Python File Service status called ")
 	sys.stderr.flush()
 	response.content_type = 'text/html; charset=utf-8'
 
-	return ["alive " + str(zk.getTest())]
+	return ["alive "]
 	
 @route('/file/<fileId>')
 def index(fileId):

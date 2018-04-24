@@ -6,7 +6,6 @@ import json
 
 class Zooconf:
 	__zkcon = None
-	__test = ""
 	__serviceConfig = None
 	
 	def __init__(self):
@@ -75,12 +74,9 @@ class Zooconf:
 		dataJsonDict['HMACKEY'] = config["HMACKEY"]
 		dataJsonDict['CONTEXT'] = config["CONTEXT"]
 		
-		self.__zkcon.create("/plh414/fileservices/"+config["ID"], json.JSONEncoder().encode(dataJsonDict).encode(), [acl], ephemeral=True)
-		#instance.zk.create("/plh414/fileservices/"+instance.serviceConfig.getProperty("ID"), data.toString().getBytes("UTF-8"), Arrays.asList(acl), CreateMode.EPHEMERAL);	
+		self.__zkcon.create("/plh414python/fileservices/"+config["ID"], json.JSONEncoder().encode(dataJsonDict).encode(), [acl], ephemeral=True)
 
 
-	def getTest(self):
-		return self.__test
 	
 	def getZooConnection(self):
 		return self.__zkcon

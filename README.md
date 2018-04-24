@@ -18,7 +18,7 @@ WSGIScriptAlias /fileservicepython /var/www/fileservicepython/app.wsgi
 
 It is important to use only 1 process in the WSGIDaemonProcess directive, as each process this process is used to create the ephemeral node for zookeeper for this fileservice.
 
-To use more processes to handle more concurrent requests (and use multiple CPUs), the processes much somehow make sure that only one ephemeral node is created.
+To use more processes to handle more concurrent requests (and use multiple CPUs), the processes must somehow make sure that only one ephemeral node is created.
 
 
 Possible deploy script
@@ -27,7 +27,7 @@ Possible deploy script
 if [ "$#" -ne 9 ]; then
     echo "Illegal number of parameters"
     echo "deploy.sh FSID ZOOKEEPER_HOST ZOOKEEPER_USERNAME ZOOKEEPER_PASSWORD SERVERHOSTNAME SERVER_PORT SERVER_SCHEME HMACKEY CONTEXT"
-    echo "e.g. ../deploy.sh  FSX snf-814985.vm.okeanos.grnet.gr username password snf-814985.vm.okeanos.grnet.gr 8080 http 7vjTsO0IhSZsNA6ze37Dk/xXw2nphFM9ZAMUkwXgaAA= fileservicejava"
+    echo "e.g. ../deploy.sh snf-814985.vm.okeanos.grnet.gr username password snf-816668.vm.okeanos.grnet.gr 80 http 7vjTsO0IhSZsNA6ze37Dk/xXw2nphFM9ZAMUkwXgaAA= fileservicepython"
     exit -1
 fi
 
